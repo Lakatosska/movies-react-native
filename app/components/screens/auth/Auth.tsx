@@ -1,8 +1,8 @@
-import Loader from '@/components/ui/Loader'
+import { Button, Loader } from '@/components/ui'
 import { IAuthFormData } from '@/shared/types/auth.interface'
 import { FC, useState } from 'react'
 import { useForm, SubmitHandler} from 'react-hook-form'
-import { Text, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 
 const Auth: FC = () => {
   const [isReg, setIsReg] = useState(false)
@@ -24,7 +24,20 @@ const Auth: FC = () => {
           {isReg ? 'Register' : 'Login'}
         </Text>
 
-        {isLoading ? <Loader /> : null}
+        {isLoading ? <Loader /> : <>
+          {/* Fields */}
+
+          <Button icon={'film'} onPress={handleSubmit(onSubmit)} >
+            Go to watch
+          </Button>
+
+          <Pressable onPress={() => setIsReg(!isReg)}>
+            <Text className='text-white opacity-30 text-right text-base mt-3'>
+              {isReg ? 'Login' : 'Register'}
+            </Text>
+
+          </Pressable> 
+        </>}
       </View>
 		</View>
 	)
