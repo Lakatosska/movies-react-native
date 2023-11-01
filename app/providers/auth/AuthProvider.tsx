@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren, createContext, useState, useEffect } from "react";
 import { IContext, TypeUserState } from "./auth-provider.interface";
 import * as SplashScreen from 'expo-splash-screen';
+import { IUser } from "@/shared/types/user.interface";
 
 export const AuthContext = createContext({} as IContext);
 
