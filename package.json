@@ -17,6 +17,7 @@
     "clsx": "^1.2.1",
     "expo": "~49.0.13",
     "expo-linear-gradient": "~12.3.0",
+    "expo-splash-screen": "^0.16.2",
     "expo-status-bar": "~1.6.0",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
