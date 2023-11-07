@@ -1,20 +1,30 @@
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 import PrivateNavigator from './PrivateNavigator';
 import { useAuth } from '@/hooks/useAuth';
-import BottomMenu from '@/components/ui/layout/bottom-menu/BottomMenu';
+import { BottomMenu } from '@/components/ui';
 
 const Navigation: FC = () => {
 
   const user = useAuth()
-  const [currentRoute, setCurrentRoute] = useState(undefined)
+  const [currentRoute, setCurrentRoute] = useState<string | undefined>(undefined)
 
   const navRef = useNavigationContainerRef()
 
+  useEffect(() => {
+    const listener = navRef?.addListener('state', () =>
+      setCurrentRoute(navRef.getCurrentRoute()?.name)
+    )
+
+    return () => {
+      navRef?.removeListener('state', listener)
+    }
+  }, [navRef])
+
   return (
     <>
-      <NavigationContainer>
+      <NavigationContainer ref={navRef}>
         <PrivateNavigator />    
       </NavigationContainer>
       {user && currentRoute && (
