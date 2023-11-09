@@ -1,17 +1,24 @@
+import { getAuthUrl } from "@/config/api.config"
+import { EnumAsyncStorage, IAuthResponse } from "@/shared/types/auth.interface"
+import { deleteTokensStorage, saveToStorage } from "../api/helper.auth"
+import { request } from "../api/request.api"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
 export const AuthService = {
-  async main(variation: 'reg' | 'login', email: string, password: string) {
-    const response = await fetch(`http://localhost:3000/${variation}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+  async main(variant: 'reg' | 'login', email: string, password: string) {
+    const response = await request<IAuthResponse>({
+			url: getAuthUrl(`/${variant === 'reg' ? 'register' : 'login'}`),
+			method: 'POST',
+			data: { email, password }
+		})
 
-    const data = await response.json();
+		if (response.accessToken) await saveToStorage(response)
 
-    if (response.ok) {
-      return data;
-    } else {
-      throw new Error(data.message || 'Something went wrong');
-    }
-  }
+		return response
+	},
+
+	async logout() {
+		await deleteTokensStorage()
+		await AsyncStorage.removeItem(EnumAsyncStorage.USER)
+	}
 }

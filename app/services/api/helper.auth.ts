@@ -12,7 +12,7 @@ export const saveTokensStorage = async (data: ITokens) => {
   await setItemAsync(EnumSecureStore.REFRESH_TOKEN, data.refreshToken)
 }
 
-export const deleteTokensStorage = async (data: ITokens) => {
+export const deleteTokensStorage = async () => {
   await deleteItemAsync(EnumSecureStore.ACCESS_TOKEN)
   await deleteItemAsync(EnumSecureStore.REFRESH_TOKEN)
 }
