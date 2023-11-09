@@ -3,6 +3,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import Header from './app/components/Header';
 import Navigation from '@/navigation/Navigation';
 import AuthProvider from '@/providers/auth/AuthProvider';
+import Toast from '@/components/ui/Toast';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         </SafeAreaProvider>
       </AuthProvider>
       <StatusBar style="light" />
+      <Toast />
     </>
   );
 }

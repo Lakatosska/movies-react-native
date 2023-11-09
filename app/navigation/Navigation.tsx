@@ -13,6 +13,8 @@ const Navigation: FC = () => {
   const navRef = useNavigationContainerRef()
 
   useEffect(() => {
+    setCurrentRoute(navRef.getCurrentRoute()?.name) 
+
     const listener = navRef?.addListener('state', () =>
       setCurrentRoute(navRef.getCurrentRoute()?.name)
     )
