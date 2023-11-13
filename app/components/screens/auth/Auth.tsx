@@ -12,7 +12,7 @@ const Auth: FC = () => {
     mode: 'onChange',
   })
 
-  const onSubmit:SubmitHandler<IAuthFormData> = ({email, password}) => {
+  const onSubmit: SubmitHandler<IAuthFormData> = ({email, password}) => {
     console.log(email, password)
   }
 
