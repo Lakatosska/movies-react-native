@@ -30,7 +30,8 @@ const AuthFields: FC<IAuthFields> = ({control, isPassRequired}) => {
       <Field 
         control={control} 
         placeholder="Enter Password"
-        name='password'  
+        name='password'
+        secureTextEntry
         rules={
           isPassRequired 
             ? {
