@@ -7,8 +7,10 @@ import { deleteItemAsync, getItemAsync } from 'expo-secure-store'
 import { EnumSecureStore, IAuthFormData } from '@/shared/types/auth.interface'
 import { useProfile } from './useProfile'
 import { useForm } from 'react-hook-form'
-import { Button, Heading, Loader } from '@/components/ui'
+import { Button, Heading, Loader, Layout } from '@/components/ui'
 import AuthFields from '../auth/AuthFields'
+import { useScaleOnMount } from '@/hooks/useScaleOnMount'
+import Animated from 'react-native-reanimated'
 
 const Profile: FC = () => {
   const {setUser} = useAuth()
@@ -19,17 +21,23 @@ const Profile: FC = () => {
 
   const {isLoading, onSubmit} = useProfile(setValue)
 
+  const {styleAnimation} = useScaleOnMount()
+
   // просто logout() чистит токены и AsyncStorage => дописываем then
 	return (
-  <View className='mt-20 px-10'>
+  <Layout isHasPadding>
     <Heading title='Profile' />
+
     {/* Picture - user*/}
-    <View className='my-6 items-center justify-center'>
+    <Animated.View 
+      style={styleAnimation}
+      className='my-6 items-center justify-center'
+    >
       <Image 
         source={require('./avatar-guest.jpg')} 
         className='w-40 h-40 rounded-2xl'
       />
-    </View>
+    </Animated.View>
 
     {isLoading ? (
       <Loader /> 
@@ -73,7 +81,7 @@ const Profile: FC = () => {
 			>
 				<Text className='text-white'>Show refreshToken</Text>
 			</Pressable> */}
-  </View>
+  </Layout>
   )
 }
 
