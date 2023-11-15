@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks/useAuth'
 import { AuthService } from '@/services/auth/auth.service'
 import { FC } from 'react'
-import { Pressable, View, Text } from 'react-native'
+import { Pressable, View, Text, Image } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import { deleteItemAsync, getItemAsync } from 'expo-secure-store'
 import { EnumSecureStore, IAuthFormData } from '@/shared/types/auth.interface'
@@ -24,6 +24,12 @@ const Profile: FC = () => {
   <View className='mt-20 px-10'>
     <Heading title='Profile' />
     {/* Picture - user*/}
+    <View className='my-6 items-center justify-center'>
+      <Image 
+        source={require('./avatar-guest.jpg')} 
+        className='w-40 h-40 rounded-2xl'
+      />
+    </View>
 
     {isLoading ? (
       <Loader /> 
