@@ -1,3 +1,4 @@
+import { Layout } from '@/components/ui'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import { TypeRootStackParamList } from '@/navigation/navigation.types'
 import { useNavigation } from '@react-navigation/native'
@@ -8,13 +9,13 @@ const Home: FC = () => {
   const {navigate} = useTypedNavigation()
 
 	return (
-		<View className='mt-20'>
+		<Layout>
       <Text>Home</Text>
       <Pressable 
         onPress={() => navigate('Auth')}>
         <Text style={{ color: 'white'}}>Go to login</Text>
       </Pressable>
-		</View>
+		</Layout>
 	)
 }
 

@@ -32,7 +32,7 @@ export const UserService = {
 
   /*Toggle favourites*/
 
-  async getbyId(_id: string) {
+  async getById(_id: string) {
 		return request<IUser>({
 			url: getUsersUrl(`/${_id}`),
 			method: 'GET',
