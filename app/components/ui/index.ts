@@ -7,3 +7,5 @@ export { default as DismissKeyboard } from './form-elements/field/DismissKeyboar
 
 export { default as BottomMenu } from './layout/bottom-menu/BottomMenu'
 export { default as Layout } from './layout/Layout'
+
+export { default as Rating } from './movie/movie-item/Rating'

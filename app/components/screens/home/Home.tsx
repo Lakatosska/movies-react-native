@@ -8,7 +8,6 @@ import { useGetAllMovies } from './useGetAllMovies'
 import Carousel from './carousel/Carousel'
 
 const Home: FC = () => {
-  const {navigate} = useTypedNavigation()
 
   const { isLoading, movies } = useGetAllMovies()
 
