@@ -3,12 +3,22 @@ import { useTypedNavigation } from "@/hooks/useTypedNavigation"
 import { IMovie } from "@/shared/types/movie.interface"
 import { getMediaSource } from "@/utils/getMediaSource"
 import { FC } from "react"
-import { Pressable, Text, View, Image } from "react-native"
+import { Pressable, Text, View, Image, Animated } from "react-native"
+import { useItemAnimation } from "./useItemAnimation"
 
-const CarouselItem: FC<{ movie: IMovie }> = ({ movie }) => {
+interface ICarouselItem {
+	index: number
+	scrollX: Animated.Value
+	movie: IMovie
+}
+
+
+const CarouselItem: FC<ICarouselItem> = ({ movie, index, scrollX }) => {
 	
   const {navigate} = useTypedNavigation()
   
+  const { rotate, opacity, scale, opacityElements } = useItemAnimation(index, scrollX)
+
   return (
 		<View className='w-48'>
       <Pressable onPress={() => navigate('Movie', {
