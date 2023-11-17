@@ -11,6 +11,9 @@ export type TypeRootStackParamList = {
   Movie: {
     slug: string
   }
+  Genre: {
+    slug: string
+  }
 } & TypeRootStackAdminList
 
 type TypeRootStackAdminList = {
