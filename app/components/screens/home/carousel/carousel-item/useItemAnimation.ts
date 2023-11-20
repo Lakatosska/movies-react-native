@@ -26,7 +26,7 @@ export const useItemAnimation= (index: number, scrollX: Animated.Value) => {
     outputRange: [0.92, 1, 0.92]
   })
 
-  // opacity elements
+  // opacity info blocks
   const opacityElements = scrollX.interpolate({
     inputRange,
     outputRange: [0, 1, 0]
