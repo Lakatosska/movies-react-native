@@ -2,7 +2,7 @@ import { IMovie } from "@/shared/types/movie.interface"
 import { FC, useRef } from "react"
 import { Animated, FlatList, Platform, Text, View } from "react-native"
 import CarouselItem from "./carousel-item/CarouselItem"
-import { ITEM_SIZE } from "./carousel.constants"
+import { EMPTY_ITEM_SIZE, ITEM_SIZE } from "./carousel.constants"
 
 const Carousel: FC<{ movies: IMovie[] }> = ({ movies }) => {
 
@@ -11,7 +11,12 @@ const Carousel: FC<{ movies: IMovie[] }> = ({ movies }) => {
 	return (
 		<View>
       <Animated.FlatList 
-        data={movies} 
+        data={[
+          {_id: 'first'} as IMovie, 
+          ...movies, 
+          {_id: 'last'} as IMovie
+        ]} 
+        keyExtractor={item => `key ${item._id}`}
         showsHorizontalScrollIndicator={false}
         horizontal
         bounces={false}
@@ -19,7 +24,7 @@ const Carousel: FC<{ movies: IMovie[] }> = ({ movies }) => {
         contentContainerStyle={{ alignItems: 'center' }}
         scrollEventThrottle={16}
         snapToInterval={ITEM_SIZE}
-        snapToAlignment='center'
+        snapToAlignment='start'
         decelerationRate={Platform.OS === 'ios' ? 0 : 0.98}
         onScroll={Animated.event(
           [
@@ -27,14 +32,20 @@ const Carousel: FC<{ movies: IMovie[] }> = ({ movies }) => {
           ],
           { useNativeDriver: true }
         )}
-        renderItem={({ item: movie, index }) => (
+        renderItem={({ item: movie, index }) => movie?.slug ? (
           <CarouselItem   
             movie={movie} 
-            key={movie._id} 
             index={index}
             scrollX={scrollX}
           />
-        )}
+        ) : (
+          <View 
+            style={{ 
+              width: EMPTY_ITEM_SIZE 
+            }} 
+          />
+          )
+        }
       />
 		</View>
 	)
