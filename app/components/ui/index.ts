@@ -11,4 +11,4 @@ export { default as Layout } from './layout/Layout'
 
 export { default as Rating } from './movie/movie-item/Rating'
 export { default as GenreList } from './movie/movie-item/GenreList'
-export { default as FavoriteButton } from './movie/movie-item/favorite-button/FavoriteButton'
+export { default as MovieItem } from './movie/movie-item/MovieItem'
