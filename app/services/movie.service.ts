@@ -24,15 +24,6 @@ export const MovieService = {
 		})
 	},
 
-  // async getFavorites() {
-	// 	return request<IMovie[]>({
-	// 		url: getUsersUrl('/profile/favorites'),
-	// 		method: 'GET',
-	// 	})
-	// },
-
-  /*Toggle favourites*/
-
   async getBySlug(slug: string) {
 		return request<IMovie>({
 			url: getMoviesUrl(`/by-slug/${slug}`),
@@ -47,8 +38,8 @@ export const MovieService = {
 	  })
   },
 
-  async getByGenres(genreIds: string) {
-		return request<IMovie>({
+  async getByGenres(genreIds: string[]) {
+		return request<IMovie[]>({
 			url: getMoviesUrl('/by-genres'),
 			method: 'POST',
       data: { genreIds }

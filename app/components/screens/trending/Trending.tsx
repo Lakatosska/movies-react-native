@@ -1,7 +1,21 @@
+import { Layout, Loader, MovieCatalog } from '@/components/ui'
 import { FC } from 'react'
+import { useTrending } from './useTrending'
 
 const Trending: FC = () => {
-	return <></>
+  const {isLoading, movies} = useTrending()
+
+  if (isLoading) return <Loader />
+
+	return (
+    <Layout isHasPadding>
+      <MovieCatalog 
+        title='Trending' 
+        movies={movies}
+        description='Trending movies in excellent quality: legal, safe, without ads'
+      />
+    </Layout>
+  )
 }
 
 export default Trending

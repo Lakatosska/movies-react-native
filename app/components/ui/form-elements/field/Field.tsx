@@ -8,7 +8,6 @@ const Field = <T extends Record<string, any>>({
   control, 
   rules,
   name,
-  className,
   ...rest
 }: IField<T>):JSX.Element => {
   return (
@@ -16,21 +15,29 @@ const Field = <T extends Record<string, any>>({
       control={control}
       name={name}
       rules={rules}
-      render={(
-        { field: {value, onChange, onBlur}, fieldState: {error} }) => <>
-          <View className={cn('bg-[#232323] w-full border rounded-lg pb-4 pt-2.5 px-4 my-1.5',
-							error ? 'border-red' : 'border-transparent')}>
-            <TextInput
-              autoCapitalize={'none'}
-              className='text-white text-base'
-              value={(value || '').toString()} 
-              onBlur={onBlur}
-              onChangeText={onChange}
-              {...rest}   
-            />
-          </View>
-          {error && <Text className='text-red'>{error.message}</Text>}
-        </>
+      render={({ 
+        field: {value, onChange, onBlur}, 
+        fieldState: {error} 
+      }) => (
+          <>
+            <View 
+              className={cn(
+                'bg-[#232323] w-full border rounded-lg pb-4 pt-2.5 px-4 my-1.5',
+                error ? 'border-red' : 'border-transparent'
+              )}
+            >
+              <TextInput
+                autoCapitalize={'none'}
+                className='text-white text-base'
+                value={(value || '').toString()} 
+                onBlur={onBlur}
+                onChangeText={onChange}
+                {...rest}   
+              />
+            </View>
+            {error && <Text className='text-red'>{error.message}</Text>}
+          </>
+        )
       }
     />
   )          

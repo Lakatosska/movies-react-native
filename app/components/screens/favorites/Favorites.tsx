@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useFavorites } from './useFavorites'
-import { Layout, Loader } from '@/components/ui'
+import { Layout, Loader, MovieCatalog } from '@/components/ui'
 import { Text } from 'react-native'
 
 const Favorites: FC = () => {
@@ -10,9 +10,7 @@ const Favorites: FC = () => {
 
 	return (
     <Layout isHasPadding>
-      <Text>Favorites</Text>
-
-      {/* MovieCatalog */}
+      <MovieCatalog title='Favorites' movies={favoriteMovies} />
     </Layout>
   )
 }
